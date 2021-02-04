@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { AddTodoForm } from "./components/AddTodoForm";
 import { TodoList } from "./components/TodoList";
 // import { TodoListItem } from "./components/TodoListItem";
 
@@ -20,12 +21,17 @@ const App: React.FC = () => {
     setTodos(newTodos);
   };
 
+  const addTodo: AddTodo = (newTodo) =>
+    newTodo.trim() !== "" &&
+    setTodos([...todos, { text: newTodo, isCompleted: false }]);
+
   return (
     <>
       <TodoList todos={todos} toggleTodo={toggleTodo} />
       {/* {todos.map((todo: Todo) => (
         <TodoListItem todo={todo} toggleTodo={toggleTodo} />
       ))} */}
+      <AddTodoForm addTodo={addTodo} />
     </>
   );
 };
